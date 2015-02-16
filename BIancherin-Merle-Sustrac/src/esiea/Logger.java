@@ -3,7 +3,8 @@ package esiea;
 import java.util.ArrayList;
 
 public class Logger {
-
+	Folder folder=new Folder("files01","10/12/2014");
+	
 	ArrayList<Message> messages;
 	Class<?> class1;
 
@@ -24,6 +25,7 @@ public class Logger {
 
 	public void error(String description) {
 		messages.add(new Message(class1.getName(), description, Type.ERROR));
+		
 	}
 
 	public boolean compare(Class<?> class2) {
@@ -35,11 +37,14 @@ public class Logger {
 
 	@Override
 	public String toString() {
-		 
+		
 		String buffer = "";
 		for (Message message : messages) {
 			buffer = buffer+ message.toString()+"\n" ;
-		}
+			folder.UpdateFolder(buffer);
+			//System.out.println(folder.getSize());
+			
+		}	
 		return buffer;
 	}
 }
