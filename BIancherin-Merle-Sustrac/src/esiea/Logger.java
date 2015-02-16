@@ -3,7 +3,7 @@ package esiea;
 import java.util.ArrayList;
 
 public class Logger {
-	Folder folder=new Folder("files01","10/12/2014");
+	Folder folder=new Folder(1000,"files01","10/12/2014");
 	
 	ArrayList<Message> messages;
 	Class<?> class1;
@@ -42,7 +42,7 @@ public class Logger {
 		for (Message message : messages) {
 			buffer = buffer+ message.toString()+"\n" ;
 			folder.UpdateFolder(buffer);
-			//System.out.println(folder.getSize());
+			
 			
 		}	
 		return buffer;

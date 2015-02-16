@@ -14,15 +14,17 @@ public class Folder {
 	private String log;
 	private String path;
 	private BufferedWriter writer;
+	private File File ;
 
 	
-	public Folder( String Name, String Date) { //String path
-		//this.size= File.length();
+	public Folder(long size, String Name, String Date) { //String path
+		this.size= size;
 		this.Name =Name;
 		this.Date =Date;
 		
 		try {
-			writer = new BufferedWriter(new FileWriter(new File("log.dat")));
+			File = new File("log.dat");
+			writer = new BufferedWriter(new FileWriter(File,true));
 			// normalement si le fichier n'existe pas, il est crée à la racine du projet
 			//writer.write(log);
 			 
@@ -63,9 +65,27 @@ public class Folder {
 	}
 	public void  UpdateFolder(String log){
 		
+		if(File.length()>this.size){
+			System.out.println("trop gros");
+			try {
+				writer = new BufferedWriter(new FileWriter(new File("log.dat")));
+				// normalement si le fichier n'existe pas, il est crée à la racine du projet
+				
+				//writer.write(log);
+				writer.newLine();
+				
+				 
+				writer.close();
+				}
+				catch (IOException e)
+				{
+				e.printStackTrace();
+				}
+		}
+		
 		
 		try {
-			writer = new BufferedWriter(new FileWriter(new File("log.dat")));
+			writer = new BufferedWriter(new FileWriter(new File("log.dat"),true));
 			// normalement si le fichier n'existe pas, il est crée à la racine du projet
 			
 			writer.write(log);
