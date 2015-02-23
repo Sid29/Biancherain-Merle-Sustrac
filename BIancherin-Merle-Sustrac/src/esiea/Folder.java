@@ -68,7 +68,7 @@ public class Folder {
 		if(File.length()>this.size){
 			System.out.println("trop gros");
 			try {
-				writer = new BufferedWriter(new FileWriter(new File("log.dat")));
+				writer = new BufferedWriter(new FileWriter(new File(this.Name+".txt")));
 				// normalement si le fichier n'existe pas, il est crée à la racine du projet
 				
 				//writer.write(log);
@@ -85,7 +85,7 @@ public class Folder {
 		
 		
 		try {
-			writer = new BufferedWriter(new FileWriter(new File("log.dat"),true));
+			writer = new BufferedWriter(new FileWriter(new File(this.Name+".txt"),true));
 			// normalement si le fichier n'existe pas, il est crée à la racine du projet
 			
 			writer.write(log);
