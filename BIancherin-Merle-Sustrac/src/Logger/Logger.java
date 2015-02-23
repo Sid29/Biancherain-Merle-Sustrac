@@ -13,19 +13,42 @@ public class Logger {
 		messages = new ArrayList<Message>();
 	}
 
+	/**
+	 * Création d'un message de type Debug
+	 *
+	 * @param texte du message
+	*/
 	public void debug(String description) {
-		messages.add(new Message(class1.getName(), description, Type.DEBUG));
-
-	}
-
-	public void info(String description) {
-		messages.add(new Message(class1.getName(), description, Type.INFO));
-
-	}
-
-	public void error(String description) {
-		messages.add(new Message(class1.getName(), description, Type.ERROR));
 		
+		Message message = new Message(class1.getName(), description, Type.DEBUG);
+		messages.add(message);
+		
+		System.out.println(message);
+
+	}
+
+	/**
+	 * Création d'un message de type Info
+	 * 
+	 * @param texte du message
+	*/
+	public void info(String description) {
+		Message message = new Message(class1.getName(), description, Type.INFO);
+		messages.add(message);
+
+		System.out.println(message);
+	}
+	
+	/**
+	 * Création d'un message de type Error
+	 *
+	 * @param texte du message
+	*/
+	public void error(String description) {
+		Message message = new Message(class1.getName(), description, Type.ERROR);
+		messages.add(message);
+		
+		System.out.println(message);
 	}
 
 	public boolean compare(Class<?> class2) {
