@@ -1,4 +1,4 @@
-package esiea;
+package Logger;
 import java.util.Iterator;
 import java.util.Properties;
 import java.io.FileOutputStream;
@@ -9,10 +9,11 @@ import java.io.OutputStream;
 
 /**
  * Prise en compte des options de conf contenu dans le fichier propertie
- * @param filename fichier où sont ecrits les propriétés
+ * @param filename fichier oï¿½ sont ecrits les propriï¿½tï¿½s
  */
 class PropertiesFiles {
 	static String propertiesFileLocation="myFile.properties";
+	
 	protected static Properties load(String filename) throws IOException, FileNotFoundException{
       Properties properties = new Properties();
       FileInputStream input = new FileInputStream(filename);

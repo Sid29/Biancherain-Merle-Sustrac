@@ -19,16 +19,18 @@ public class Main {
 		 // Folder folder=new Folder(10,"files01","10/12/2014");
 		  
 		  /***TEST FILE CONF***/
-		  PropertiesFiles propri = new PropertiesFiles();
+		 // PropertiesFiles propri = new PropertiesFiles();
 		  try{
 		         // chargement des propri�t�s
-		         Properties prop = PropertiesFiles.load("myFile.properties");
+		         Properties prop = Logger.loadProperties("myFile.properties");
 		         //parcourt et affiche les propri�tes
-		         propri.displayProperties(prop);
+		         Logger.displayProperties(prop);
 		         //modifie les propri�t�
 		         prop.setProperty("level", "INFO");
 		         //sauvegarde les modif dans le fichier
-		         propri.saveProperties(prop,propri.propertiesFileLocation, null);
+		         Logger.saveProperties(prop);
+		         
+		         
 		      }
 	      catch(Exception e){
 	          e.printStackTrace();
