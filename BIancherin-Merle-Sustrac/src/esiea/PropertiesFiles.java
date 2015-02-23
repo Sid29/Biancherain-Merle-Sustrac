@@ -11,7 +11,7 @@ import java.io.OutputStream;
  * Prise en compte des options de conf contenu dans le fichier propertie
  * @param filename fichier où sont ecrits les propriétés
  */
-class PropertiesLoad {
+class PropertiesFiles {
 	static String propertiesFileLocation="myFile.properties";
 	protected static Properties load(String filename) throws IOException, FileNotFoundException{
       Properties properties = new Properties();
@@ -41,19 +41,4 @@ class PropertiesLoad {
 		out.flush();
 		out.close();
 	}
-   public static void main(String[] args){
-      try{
-         // chargement des propriétés
-         Properties prop = PropertiesLoad.load("myFile.properties");
-         //parcourt et affiche les propriétes
-         displayProperties(prop);
-         //modifie les propriété
-         prop.setProperty("level", "INFO");
-         //sauvegarde les modif dans le fichier
-         saveProperties(prop,propertiesFileLocation, null);
-      }
-      catch(Exception e){
-         e.printStackTrace();
-      }
-   }
 }
