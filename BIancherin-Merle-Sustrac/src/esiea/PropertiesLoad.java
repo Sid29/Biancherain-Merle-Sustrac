@@ -1,4 +1,5 @@
 package esiea;
+import java.util.Iterator;
 import java.util.Properties;
 import java.io.IOException;
 import java.io.FileNotFoundException;
@@ -19,14 +20,22 @@ class PropertiesLoad {
          finally{input.close();}
    }
 
+   	//Lis toute les valeurs contenues dans properties
+	protected static void displayProperties(Properties props) {
+		Iterator it = props.keySet().iterator();
+		while (it.hasNext()) {
+			String propertyName = (String) it.next();
+			String propertyValue = props.getProperty(propertyName);
+			System.out.println(propertyName + "=" + propertyValue);
+		}
+	}
+
    public static void main(String[] args){
       try{
          // chargement des propriétés
          Properties prop = PropertiesLoad.load("myFile.properties");
-         // Affichage des propriétés
-         // Récupère la propriété ma.cle
-         // Si la propriété n'existe pas, retourne la valeur par défaut "vide"
-         System.out.println("level:"+ prop.getProperty("level","vide"));
+         //parcourt et affiche les propriétes
+         displayProperties(prop);
       }
       catch(Exception e){
          e.printStackTrace();
