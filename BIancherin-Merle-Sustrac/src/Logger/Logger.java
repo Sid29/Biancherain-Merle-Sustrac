@@ -93,8 +93,8 @@ public class Logger {
 	 * @param Valeur de la propriété 
 	 * @param Fichier de propriété à enregistrer
 	 */
-	public static void DisplayOnePropertie(String propertySearch )
-	{	PropertiesFiles.displayOnePropertie(propertySearch);	}
+	public static String DisplayOnePropertie(String propertySearch )
+	{	return PropertiesFiles.displayOnePropertie(propertySearch);	}
 
 	public boolean compare(Class<?> class2) {
 		if (class1.equals(class2)) {
