@@ -16,17 +16,17 @@ public class Folder {
 	private File File;
 	private int i;
 
-	public Folder(long size, String Date) { // String path
+	protected Folder(long size, String Date) { // String path
 
 		this.size = size;
-		Name = "log" + i + ".dat";
+		Name = "log" + i +"_"+GetDate()+ ".dat";
 		this.Date = Date;
-
+		path="C:\\log\\";
 		try {
-			File = new File(Name);
+			
+			File = new File(path+Name);
 			writer = new BufferedWriter(new FileWriter(File, true));
-			// normalement si le fichier n'existe pas, il est crée à la racine
-			// du projet
+		
 			// writer.write(log);
 
 			// writer.close();
@@ -61,16 +61,16 @@ public class Folder {
 		Date = date;
 	}
 
-	public void UpdateFolder(Message log) {
-		System.out.println("1  " + File.getName() + " " + File.length());
-		if (File.length() > this.size) {
+	protected void UpdateFolder(Message log) {
+				
+		if (File.length() > this.size & File.exists() ) {
 			System.out.println("trop gros");
 			i = i + 1;
-			setName("log" + i);
-			System.out.println(getName());
+			setName("log" + i+"_"+GetDate()+".dat");
+			
 
 			try {
-				File = new File(Name);
+				File = new File(path+Name);
 				writer = new BufferedWriter(new FileWriter(File));
 				// normalement si le fichier n'existe pas, il est crée à la
 				// racine du projet
@@ -86,7 +86,7 @@ public class Folder {
 		}
 
 		try {
-			writer = new BufferedWriter(new FileWriter(new File(Name), true));
+			writer = new BufferedWriter(new FileWriter(new File(path+Name), true));
 			// normalement si le fichier n'existe pas, il est crée à la racine
 			// du projet
 			writer.newLine();
@@ -109,7 +109,7 @@ public class Folder {
 	}
 
 	private static String GetDate() {
-		String format = "dd_MM_yy";
+		String format = "yyyy_MM_dd h_mm_ss";
 		java.text.SimpleDateFormat formater = new java.text.SimpleDateFormat(
 				format);
 		java.util.Date date = new java.util.Date();
