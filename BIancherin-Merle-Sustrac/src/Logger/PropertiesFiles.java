@@ -9,7 +9,7 @@ import java.io.OutputStream;
 
 /**
  * Prise en compte des options de conf contenu dans le fichier propertie
- * @param filename fichier o� sont ecrits les propri�t�s
+ * @param filename fichier où sont ecrits les propriétés
  */
 class PropertiesFiles {
 	static String propertiesFileLocation="myFile.properties";
@@ -34,6 +34,20 @@ class PropertiesFiles {
 		}
 	}
 
+   	//Lis une valeur donnée contenues dans properties
+	protected static String displayOnePropertie(Properties props,String propertySearch) {
+		String propertySearchValue = null;
+		Iterator<Object> it = props.keySet().iterator();
+		while (it.hasNext()) {
+			String propertyName = (String) it.next();
+			if(propertyName.equals(propertySearch))
+			{
+				propertySearchValue = props.getProperty(propertyName);
+				System.out.println("Param: " + propertyName + "=" + propertySearchValue);
+			}
+		}
+		return propertySearchValue;
+	}
 	//Ecris les nouvelles valeurs dans le fichier de conf
 	public static void saveProperties(Properties props, String fileLocation, String comments) throws FileNotFoundException,
 			IOException {
