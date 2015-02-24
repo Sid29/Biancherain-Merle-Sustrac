@@ -40,15 +40,13 @@ public class Main {
 		// PropertiesFiles propri = new PropertiesFiles();
 		try {
 			// chargement des propri�t�s
-			Properties prop = Logger.loadProperties("myFile.properties");
+			Logger.loadProperties("myFile.properties");
 			// parcourt et affiche les propri�tes
-			Logger.displayProperties(prop);
-			// modifie les propri�t�
-			prop.setProperty("level", "INFO");
-			// sauvegarde les modif dans le fichier
-			Logger.saveProperties(prop);
-			Logger.DisplayOnePropertie(prop,"level");
+			Logger.displayProperties();
 
+			// sauvegarde les modif dans le fichier
+			Logger.saveProperties("level", "INFO");
+			Logger.DisplayOnePropertie("level");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

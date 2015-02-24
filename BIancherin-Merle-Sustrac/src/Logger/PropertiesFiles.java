@@ -13,46 +13,47 @@ import java.io.OutputStream;
  */
 class PropertiesFiles {
 	static String propertiesFileLocation="myFile.properties";
-	
-	protected static Properties load(String filename) throws IOException, FileNotFoundException{
-      Properties properties = new Properties();
-      FileInputStream input = new FileInputStream(filename);
-      try{
-         properties.load(input);
-         return properties;
-      }
-         finally{input.close();}
-   }
+	private static Properties properties;
+	protected static void load(String filename) throws IOException, FileNotFoundException{
+		properties = new Properties();
+		FileInputStream input = new FileInputStream(filename);
+		try{
+			properties.load(input);
+		}
+		finally{input.close();}
+	}
 
-   	//Lis toute les valeurs contenues dans properties
-	protected static void displayProperties(Properties props) {
-		Iterator<Object> it = props.keySet().iterator();
+	//Lis toute les valeurs contenues dans properties
+	protected static void displayProperties() {
+		Iterator<Object> it = properties.keySet().iterator();
 		while (it.hasNext()) {
 			String propertyName = (String) it.next();
-			String propertyValue = props.getProperty(propertyName);
+			String propertyValue = properties.getProperty(propertyName);
 			System.out.println(propertyName + "=" + propertyValue);
 		}
 	}
 
-   	//Lis une valeur donnée contenues dans properties
-	protected static String displayOnePropertie(Properties props,String propertySearch) {
+	//Lis une valeur donnée contenues dans properties
+	protected static String displayOnePropertie(String propertySearch) {
 		String propertySearchValue = null;
-		Iterator<Object> it = props.keySet().iterator();
+		Iterator<Object> it = properties.keySet().iterator();
 		while (it.hasNext()) {
 			String propertyName = (String) it.next();
 			if(propertyName.equals(propertySearch))
 			{
-				propertySearchValue = props.getProperty(propertyName);
+				propertySearchValue = properties.getProperty(propertyName);
 				System.out.println("Param: " + propertyName + "=" + propertySearchValue);
 			}
 		}
 		return propertySearchValue;
 	}
 	//Ecris les nouvelles valeurs dans le fichier de conf
-	public static void saveProperties(Properties props, String fileLocation, String comments) throws FileNotFoundException,
-			IOException {
+	public static void saveProperties(String propertiesName, String propertiesParam, String fileLocation, String comments) throws FileNotFoundException,
+	IOException {
+		// modifie les propri�t�
+		properties.setProperty("level", "INFO");
 		OutputStream out = new FileOutputStream(fileLocation);
-		props.store(out, comments);
+		properties.store(out, comments);
 		out.flush();
 		out.close();
 	}

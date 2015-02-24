@@ -1,8 +1,10 @@
 package Logger;
 
+
 import java.util.Date;
 
-public class Message {
+
+public class Message implements Comparable<Message>  {
 
 	private Date date;
 	private String nom;
@@ -15,6 +17,8 @@ public class Message {
 		this.type =type;
 		this.date = new java.util.Date();
 	}
+	
+	
 
 	@Override
 	public String toString() {
@@ -22,6 +26,14 @@ public class Message {
 		java.text.SimpleDateFormat formater = new java.text.SimpleDateFormat( format ); 
 
 		return formater.format( date )  + "[NAME=" + nom + " LEVEL="+type+" MESSAGE="+ description + "]";
+	}
+
+
+
+	@Override
+	public int compareTo(Message autreMesssage) {
+		
+		return this.type.compareTo(autreMesssage.type);
 	}
 
 	

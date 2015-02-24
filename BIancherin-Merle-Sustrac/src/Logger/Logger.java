@@ -60,30 +60,31 @@ public class Logger {
 	 *
 	 * @param nom du fichier
 	 */
-	public static Properties loadProperties(String filename)
+	public static void loadProperties(String filename)
 			throws FileNotFoundException, IOException {
-		return PropertiesFiles.load(filename);
+		PropertiesFiles.load(filename);
 
 	}
 
 	/**
 	 * Affichage d'une propriété
 	 *
-	  * @param Fichier de propriété à enregistrer
+	 * @param Fichier de propriété à enregistrer
 	 */
-	public static void displayProperties(Properties prop) {
-		PropertiesFiles.displayProperties(prop);
+	public static void displayProperties() {
+		PropertiesFiles.displayProperties();
 	}
 
 	/**
 	 * Enregistrement d'une propriété
+	 * @param propertiesParam 
+	 * @param propertiesName 
 	 *
 	 * @param Fichier de propriété à enregistrer
 	 */
-	public static void saveProperties(Properties prop)
+	public static void saveProperties(String propertiesName, String propertiesParam)
 			throws FileNotFoundException, IOException {
-		PropertiesFiles.saveProperties(prop,
-				PropertiesFiles.propertiesFileLocation, null);
+		PropertiesFiles.saveProperties(propertiesName, propertiesParam, PropertiesFiles.propertiesFileLocation, null);
 	}
 
 	/**
@@ -92,9 +93,9 @@ public class Logger {
 	 * @param Valeur de la propriété 
 	 * @param Fichier de propriété à enregistrer
 	 */
-	public static void DisplayOnePropertie(Properties props,String propertySearch )
-			 {	PropertiesFiles.displayOnePropertie(props, propertySearch);	}
-	
+	public static void DisplayOnePropertie(String propertySearch )
+	{	PropertiesFiles.displayOnePropertie(propertySearch);	}
+
 	public boolean compare(Class<?> class2) {
 		if (class1.equals(class2)) {
 			return true;
