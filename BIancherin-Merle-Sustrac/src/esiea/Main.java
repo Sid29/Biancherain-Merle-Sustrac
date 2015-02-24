@@ -47,6 +47,7 @@ public class Main {
 			prop.setProperty("level", "INFO");
 			// sauvegarde les modif dans le fichier
 			Logger.saveProperties(prop);
+			Logger.DisplayOnePropertie(prop,"level");
 
 		} catch (Exception e) {
 			e.printStackTrace();
