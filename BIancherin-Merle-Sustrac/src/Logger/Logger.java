@@ -20,8 +20,7 @@ public class Logger {
 	/**
 	 * Création d'un message de type Debug
 	 *
-	 * @param texte
-	 *            du message
+	 * @param texte du message
 	 */
 	public void debug(String description) {
 
@@ -35,8 +34,7 @@ public class Logger {
 	/**
 	 * Création d'un message de type Info
 	 * 
-	 * @param texte
-	 *            du message
+	 * @param texte du message
 	 */
 	public void info(String description) {
 		Message message = new Message(class1.getName(), description, Type.INFO);
@@ -48,8 +46,7 @@ public class Logger {
 	/**
 	 * Création d'un message de type Error
 	 *
-	 * @param texte
-	 *            du message
+	 * @param texte du message
 	 */
 	public void error(String description) {
 		Message message = new Message(class1.getName(), description, Type.ERROR);
@@ -61,8 +58,7 @@ public class Logger {
 	/**
 	 * Chargement d'un fichier de propriété
 	 *
-	 * @param nom
-	 *            du fichier
+	 * @param nom du fichier
 	 */
 	public static Properties loadProperties(String filename)
 			throws FileNotFoundException, IOException {
@@ -73,8 +69,7 @@ public class Logger {
 	/**
 	 * Affichage d'une propriété
 	 *
-	 * @param propri�
-	 *            �té à afficher
+	  * @param Fichier de propriété à enregistrer
 	 */
 	public static void displayProperties(Properties prop) {
 		PropertiesFiles.displayProperties(prop);
@@ -83,8 +78,7 @@ public class Logger {
 	/**
 	 * Enregistrement d'une propriété
 	 *
-	 * @param Propri�
-	 *            �té à enregistrer
+	 * @param Fichier de propriété à enregistrer
 	 */
 	public static void saveProperties(Properties prop)
 			throws FileNotFoundException, IOException {
@@ -92,6 +86,15 @@ public class Logger {
 				PropertiesFiles.propertiesFileLocation, null);
 	}
 
+	/**
+	 * Affichage d'une propriété
+	 *
+	 * @param Valeur de la propriété 
+	 * @param Fichier de propriété à enregistrer
+	 */
+	public static void DisplayOnePropertie(Properties props,String propertySearch )
+			 {	PropertiesFiles.displayOnePropertie(props, propertySearch);	}
+	
 	public boolean compare(Class<?> class2) {
 		if (class1.equals(class2)) {
 			return true;
