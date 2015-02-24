@@ -19,7 +19,7 @@ public class Main {
 			Logger.displayProperties();
 
 			// sauvegarde les modif dans le fichier
-			Logger.saveProperties("level", "INFO");
+			Logger.saveProperties("level", "Debug");
 			} catch (Exception e) {
 			e.printStackTrace();
 		}

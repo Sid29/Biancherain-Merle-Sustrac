@@ -20,45 +20,65 @@ public class Logger {
 	/**
 	 * Création d'un message de type Debug
 	 *
-	 * @param texte du message
+	 * @param texte
+	 *            du message
 	 */
 	public void debug(String description) {
 
 		Message message = new Message(class1.getName(), description, Type.DEBUG);
-		messages.add(message);
-		folder.UpdateFolder(message);
-		System.out.println(message);
+
+		showLog(message);
 
 	}
 
 	/**
 	 * Création d'un message de type Info
 	 * 
-	 * @param texte du message
+	 * @param texte
+	 *            du message
 	 */
 	public void info(String description) {
 		Message message = new Message(class1.getName(), description, Type.INFO);
-		messages.add(message);
-		folder.UpdateFolder(message);
-		System.out.println(message);
+		showLog(message);
 	}
 
 	/**
 	 * Création d'un message de type Error
 	 *
-	 * @param texte du message
+	 * @param texte
+	 *            du message
 	 */
 	public void error(String description) {
+
 		Message message = new Message(class1.getName(), description, Type.ERROR);
+
+		showLog(message);
+
+	}
+	
+	
+	/**
+	 * Affichage du message en fonction de son niveau
+	 * 
+	 * @param le message à afficher
+	 */
+	private void showLog(Message message) {
 		messages.add(message);
-		folder.UpdateFolder(message);
-		System.out.println(message);
+		Type typeLevel;
+		typeLevel = Type.getType(PropertiesFiles.displayOnePropertie("level"));
+
+		if (message.isShow(typeLevel)) {
+			folder.UpdateFolder(message);
+			System.out.println(message);
+		}
+
 	}
 
 	/**
 	 * Chargement d'un fichier de propriété
 	 *
-	 * @param nom du fichier
+	 * @param nom
+	 *            du fichier
 	 */
 	public static void loadProperties(String filename)
 			throws FileNotFoundException, IOException {
@@ -69,7 +89,8 @@ public class Logger {
 	/**
 	 * Affichage d'une propriété
 	 *
-	 * @param Fichier de propriété à enregistrer
+	 * @param Fichier
+	 *            de propriété à enregistrer
 	 */
 	public static void displayProperties() {
 		PropertiesFiles.displayProperties();
@@ -77,24 +98,30 @@ public class Logger {
 
 	/**
 	 * Enregistrement d'une propriété
-	 * @param propertiesParam 
-	 * @param propertiesName 
+	 * 
+	 * @param propertiesParam
+	 * @param propertiesName
 	 *
-	 * @param Fichier de propriété à enregistrer
+	 * @param Fichier
+	 *            de propriété à enregistrer
 	 */
-	public static void saveProperties(String propertiesName, String propertiesParam)
-			throws FileNotFoundException, IOException {
-		PropertiesFiles.saveProperties(propertiesName, propertiesParam, PropertiesFiles.propertiesFileLocation, null);
+	public static void saveProperties(String propertiesName,
+			String propertiesParam) throws FileNotFoundException, IOException {
+		PropertiesFiles.saveProperties(propertiesName, propertiesParam,
+				PropertiesFiles.propertiesFileLocation, null);
 	}
 
 	/**
 	 * Affichage d'une propriété
 	 *
-	 * @param Valeur de la propriété 
-	 * @param Fichier de propriété à enregistrer
+	 * @param Valeur
+	 *            de la propriété
+	 * @param Fichier
+	 *            de propriété à enregistrer
 	 */
-	public static String DisplayOnePropertie(String propertySearch )
-	{	return PropertiesFiles.displayOnePropertie(propertySearch);	}
+	public static String DisplayOnePropertie(String propertySearch) {
+		return PropertiesFiles.displayOnePropertie(propertySearch);
+	}
 
 	public boolean compare(Class<?> class2) {
 		if (class1.equals(class2)) {
