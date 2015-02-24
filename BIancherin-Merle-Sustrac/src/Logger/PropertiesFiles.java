@@ -51,7 +51,7 @@ class PropertiesFiles {
 	public static void saveProperties(String propertiesName, String propertiesParam, String fileLocation, String comments) throws FileNotFoundException,
 	IOException {
 		// modifie les propri�t�
-		properties.setProperty("level", "INFO");
+		properties.setProperty(propertiesName, propertiesParam);
 		OutputStream out = new FileOutputStream(fileLocation);
 		properties.store(out, comments);
 		out.flush();
