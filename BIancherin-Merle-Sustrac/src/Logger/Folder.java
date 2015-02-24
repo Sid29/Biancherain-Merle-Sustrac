@@ -21,7 +21,8 @@ public class Folder {
 		this.size = size;
 		Name = "log" + i +"_"+GetDate()+ ".dat";
 		this.Date = Date;
-		path="C:\\log\\";
+		//recuperation du path des logs dans le fichier properties
+		path=PropertiesFiles.displayOnePropertie("path");
 		try {
 			
 			File = new File(path+Name);
