@@ -16,7 +16,7 @@ public class Folder {
 	private File File;
 	private int i;
 
-	public Folder(long size, String Date) { // String path
+	protected Folder(long size, String Date) { // String path
 
 		this.size = size;
 		Name = "log" + i +"_"+GetDate()+ ".dat";
@@ -61,7 +61,7 @@ public class Folder {
 		Date = date;
 	}
 
-	public void UpdateFolder(Message log) {
+	protected void UpdateFolder(Message log) {
 				
 		if (File.length() > this.size & File.exists() ) {
 			System.out.println("trop gros");
