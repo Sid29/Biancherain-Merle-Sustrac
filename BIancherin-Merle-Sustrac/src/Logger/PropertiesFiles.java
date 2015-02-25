@@ -42,10 +42,24 @@ class PropertiesFiles {
 			if(propertyName.equals(propertySearch))
 			{
 				propertySearchValue = properties.getProperty(propertyName);
-				System.out.println("Param: " + propertyName + "=" + propertySearchValue);
+				//System.out.println("Param: " + propertyName + "=" + propertySearchValue);
 			}
 		}
 		return propertySearchValue;
+	}
+	
+	//Verifie qu'une valeur donnée est contenues dans properties
+	protected static boolean propertiePresent(String propertySearch) {
+		Boolean check = false;
+		Iterator<Object> it = properties.keySet().iterator();
+		while (it.hasNext()) {
+			String propertyName = (String) it.next();
+			if(propertyName.equals(propertySearch))
+			{
+				check=true;
+			}
+		}
+		return check;
 	}
 	//Ecris les nouvelles valeurs dans le fichier de conf
 	public static void saveProperties(String propertiesName, String propertiesParam, String fileLocation, String comments) throws FileNotFoundException,
