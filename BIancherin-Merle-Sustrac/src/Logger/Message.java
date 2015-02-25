@@ -18,12 +18,21 @@ public class Message implements Comparable<Message> {
 
 	@Override
 	public String toString() {
-		String format = "yyyy-MM-dd HH:mm:ss.SSS";
+		String formatDate = "yyyy-MM-dd HH:mm:ss.SSS";
+		//Vérifie que la propriété est bien dans .propertie sinon prend valeur par default
+		if(PropertiesFiles.propertiePresent("formatDate"))
+		{formatDate = PropertiesFiles.displayOnePropertie("formatDate");}
+		
+		
+	//	String format = PropertiesFiles.displayOnePropertie("format");
+	//	String format ="[NAME=\" + nom + \" LEVEL=\" + type+ \" MESSAGE=\" + description + \"]";
+		
 		java.text.SimpleDateFormat formater = new java.text.SimpleDateFormat(
-				format);
+				formatDate);
 
 		return formater.format(date) + "[NAME=" + nom + " LEVEL=" + type
 				+ " MESSAGE=" + description + "]";
+	//	return formater.format(date)+format;
 	}
 
 	@Override

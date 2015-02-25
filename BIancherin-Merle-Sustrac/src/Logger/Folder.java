@@ -22,7 +22,9 @@ public class Folder {
 		Name = "log" + i +"_"+GetDate()+ ".dat";
 		this.Date = Date;
 		//recuperation du path des logs dans le fichier properties
-		path=PropertiesFiles.displayOnePropertie("path");
+		path="./";
+		if(PropertiesFiles.propertiePresent("path"))
+		{path = PropertiesFiles.displayOnePropertie("path");}
 		try {
 			
 			File = new File(path+Name);
