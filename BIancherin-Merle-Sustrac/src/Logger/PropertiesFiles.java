@@ -1,6 +1,7 @@
 package Logger;
 import java.util.Iterator;
 import java.util.Properties;
+import java.util.Scanner;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.FileNotFoundException;
@@ -61,14 +62,27 @@ class PropertiesFiles {
 		}
 		return check;
 	}
+	
 	//Ecris les nouvelles valeurs dans le fichier de conf
-	public static void saveProperties(String propertiesName, String propertiesParam, String fileLocation, String comments) throws FileNotFoundException,
+	protected static void modifyProperties(String propertiesName, String propertiesParam, String fileLocation) throws FileNotFoundException,
 	IOException {
-		// modifie les propri�t�
+		// modifie les propriétés
 		properties.setProperty(propertiesName, propertiesParam);
 		OutputStream out = new FileOutputStream(fileLocation);
-		properties.store(out, comments);
+		//properties.store(out, comments);
 		out.flush();
 		out.close();
+	}
+	
+	protected static void makeNewConfig()
+	{
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter the path of your new .properties");
+		String path = sc.nextLine();
+		System.out.println("Enter the type of parameter you want");
+		String param = sc.nextLine();
+		System.out.println("Enter the value of the parameter "+param);
+		String value=sc.nextLine();
+		System.out.println(path +" "+param+" "+value);
 	}
 }

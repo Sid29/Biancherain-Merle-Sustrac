@@ -105,10 +105,18 @@ public class Logger {
 	 * @param Fichier
 	 *            de propriété à enregistrer
 	 */
-	public static void saveProperties(String propertiesName,
+	public static void modifyProperties(String propertiesName,
 			String propertiesParam) throws FileNotFoundException, IOException {
-		PropertiesFiles.saveProperties(propertiesName, propertiesParam,
-				PropertiesFiles.propertiesFileLocation, null);
+		PropertiesFiles.modifyProperties(propertiesName, propertiesParam,
+				PropertiesFiles.propertiesFileLocation);
+	}
+
+	/**
+	 * Création d'un fichier .propertie
+	 * 
+	 */
+	public static void makeNewProperties() {
+		PropertiesFiles.makeNewConfig();
 	}
 
 	/**
