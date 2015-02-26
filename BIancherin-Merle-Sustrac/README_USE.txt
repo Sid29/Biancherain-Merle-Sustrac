@@ -1,53 +1,58 @@
 FRAMEWORK DE LOG  
 
-Copier se code dans le Main,  il vous permettra de modifier les différentes fonctions de la Framework.
-/************ TEST FILE CONF ***********************/
-	try {
-			// Chargement des  propriétés.
-			Logger.loadProperties("myFile.properties");
-			// Parcours et affiche les propriétés. 
-		//	Logger.displayProperties();
+Vous trouverez un package de test "esiea" sur notre GIT contenant une classe main pour tester notre Framework.
 
-			// Sauvegarde les modification  dans le fichier
-		//	Logger.modifyProperties("level", "Info");
-			
-			Logger.makeNewProperties();
-			} catch (Exception e) {
-			e.printStackTrace();
-		}
-/****************************************************/
-     
-Les diffèrents propriété modifiable sont:
+/************ FONCTIONNALITE ***********************/
+    
+Notre framework possede :  
+â€¢ Un Logger pour Ã©mettre le message
+â€¢ Un formateur pour personnaliser le contenu du message
+â€¢ Une ou plusieurs cibles pour stocker le message
 
-Modifie la cible de destination:
-   cible=FILE
-   Options possibles:- <ROTATE> crée un fichier de log dés qu'il dépasse 1ko. 
-   					 - <FILE>   crée un fichier de log unique.
+Par default, notre formateur affiche la date du message,le niveau de log et le nom du logger
+
+
+Par ailleurs notre framework permet de de configurer votre framework en Java et
+dans un format textuel (fichier Properties Java).
+
+Configuration possible :
+
+-Choisir la cible de destination d'un message:
+   cible=FILE (par default)
+   Options possibles:- <ROTATE> crÃ©e un fichier de log des qu'il dÃ©passe 1ko
+   						(la taille est ici faible uniquement pour obtenir un resultat rapidement). 
+   					 - <FILE>   crÃ©e un fichier de log unique.
    					 - <CONSOLE> Affiche les logs uniquement dans la console.
 
-Modifie le format de date visible  dans les logs.
-   formatDate=yyyy-MM-dd HH:mm:ss.SSS
+- Modifier le format de date visible  dans les logs.
+   formatDate=yyyy-MM-dd HH:mm:ss.SSS (par default)
 
-Modifie le format de sortit des logs:
-   format= [NAME=" + nom + " LEVEL=" + type+ " MESSAGE=" + description + "] 
+- Modifier le chemin de destination des logs:
+   path=./test/ (par default)
+   A noter que si le dossier /test n'existe pas, il sera crÃ©e par le programme.
 
-Modifie le chemin de destination des logs:
-   path=./test/
+- Modifier le niveau de logs Ã  afficher 
+   level=Info (par default)
+   Valeurs possibles: <info>, <debug> , <error>.
 
-Modifie les logs à afficher 
-   level=Info 
-   Valeurs possibles: <info>, <debug>tout est afficher , <error>.
+Enfin nous avons essayer le respecter le principe d'OCP et 
+il est donc possible de configurer le framework sans modifier le code.
+
 /****************************************************/
-Code à utiliser pour:
+Code Ã  utiliser pour:
 
-		Crée une instance LoggerFactory:
+		Configurer notre framework en Java:
+			Logger.makeNewProperties();
+
+		CrÃ©e une instance LoggerFactory:
   			 Logger logger = LoggerFactory.getLogger(Main.class);
 
-		Crée un Logger de debug 
+		CrÃ©e un Logger de debug 
    			logger.debug(String);
 
-		Crée un Logger info  
+		CrÃ©e un Logger info  
    			logger.info(String);
 
-		Crée un Logger d'erreur
+		CrÃ©e un Logger d'erreur
     		logger.error(String);
+    		
