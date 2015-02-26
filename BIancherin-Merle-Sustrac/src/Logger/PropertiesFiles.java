@@ -76,13 +76,41 @@ class PropertiesFiles {
 	
 	protected static void makeNewConfig()
 	{
+		String path = PropertiesFiles.propertiesFileLocation;
+		
+		System.out.println("Welcome on the configurator of .properties\n");
+		System.out.println("Your .properties contains the following parameter :\n");
+		displayProperties();
+		
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Enter the path of your new .properties");
-		String path = sc.nextLine();
-		System.out.println("Enter the type of parameter you want");
-		String param = sc.nextLine();
-		System.out.println("Enter the value of the parameter "+param);
-		String value=sc.nextLine();
-		System.out.println(path +" "+param+" "+value);
+		System.out.println("\nDo you want modify it ? (Y/N)");
+		String mod = sc.nextLine();
+		
+		if(mod.equals("Y")|| mod.equals("y")){
+			System.out.println("Enter the type of parameter you want add/modify");
+			String param = sc.nextLine();
+			System.out.println("Enter the value of the parameter "+param);
+			String value=sc.nextLine();
+			System.out.println(path +" "+param+" "+value);
+			try {
+				modifyProperties(param,value,path);
+				System.out.println("\nModification successful!");
+				System.out.println("Your new .parameter is: \n");
+				displayProperties();
+				System.out.println("Exit of configurator");
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		else if (mod.equals("N")||mod.equals("n")){
+			System.out.println("Exit of configurator");
+		}
+		else{System.out.println("Wrong answer, type Y for Yes or N for no");}
+		
+
 	}
 }

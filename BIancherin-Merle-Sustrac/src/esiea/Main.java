@@ -16,10 +16,10 @@ public class Main {
 			// chargement des propri�t�s
 			Logger.loadProperties("myFile.properties");
 			// parcourt et affiche les propri�tes
-			Logger.displayProperties();
+		//	Logger.displayProperties();
 
 			// sauvegarde les modif dans le fichier
-			Logger.modifyProperties("level", "Debug");
+		//	Logger.modifyProperties("level", "Info");
 			
 			Logger.makeNewProperties();
 			} catch (Exception e) {
