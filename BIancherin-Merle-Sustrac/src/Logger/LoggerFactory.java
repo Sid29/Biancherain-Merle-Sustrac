@@ -2,10 +2,9 @@ package Logger;
 
 import java.util.ArrayList;
 
-public class LoggerFactory {
+class LoggerFactory {
 
 	private static ArrayList<Logger> loggers;
-
 	public static Logger getLogger(Class<?> class1) {
 		if (loggers == null) {
 			Logger logger = new Logger(class1); 
@@ -17,7 +16,6 @@ public class LoggerFactory {
 				return logger; // Si oui on le renvoi
 			}
 		}
-
 		// Sinon on en crée un nouveau
 		Logger logger = new Logger(class1);
 		return logger;
