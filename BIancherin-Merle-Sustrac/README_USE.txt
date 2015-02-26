@@ -1,6 +1,6 @@
 FRAMEWORK DE LOG  
 
-Copier se code dans le Main  il vous permettra de modifier les différentes fonctions de la Framework.
+Copier se code dans le Main,  il vous permettra de modifier les différentes fonctions de la Framework.
 /************ TEST FILE CONF ***********************/
 	try {
 			// Chargement des  propriétés.
@@ -19,14 +19,11 @@ Copier se code dans le Main  il vous permettra de modifier les différentes fonct
      
 Les diffèrents propriété modifiable sont:
 
-
+Modifie la cible de destination:
    cible=FILE
-   
-   option3=ROTATE
-   
-   option2=FILE
-   
-   option1=CONSOLE
+   Options possibles:- <ROTATE> crée un fichier de log dés qu'il dépasse 1ko. 
+   					 - <FILE>   crée un fichier de log unique.
+   					 - <CONSOLE> Affiche les logs uniquement dans la console.
 
 Modifie le format de date visible  dans les logs.
    formatDate=yyyy-MM-dd HH:mm:ss.SSS
@@ -39,7 +36,7 @@ Modifie le chemin de destination des logs:
 
 Modifie les logs à afficher 
    level=Info 
-   Valeurs possibles: info, debug(tout est afficher) , error.
+   Valeurs possibles: <info>, <debug>tout est afficher , <error>.
 /****************************************************/
 Code à utiliser pour:
 
