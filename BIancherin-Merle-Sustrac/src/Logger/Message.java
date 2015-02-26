@@ -2,14 +2,14 @@ package Logger;
 
 import java.util.Date;
 
-public class Message implements Comparable<Message> {
+class Message implements Comparable<Message> {
 
 	private Date date;
 	private String nom;
 	private String description;
 	private Type type;
 
-	public Message(String nom, String description, Type type) {
+	protected Message(String nom, String description, Type type) {
 		this.nom = nom;
 		this.description = description;
 		this.type = type;
@@ -21,23 +21,14 @@ public class Message implements Comparable<Message> {
 		String formatDate = "yyyy-MM-dd HH:mm:ss.SSS";
 		//Vérifie que la propriété est bien dans .propertie sinon prend valeur par default
 		if(PropertiesFiles.propertiePresent("formatDate"))
-		{formatDate = PropertiesFiles.displayOnePropertie("formatDate");}
-		
-		
-	//	String format = PropertiesFiles.displayOnePropertie("format");
-	//	String format ="[NAME=\" + nom + \" LEVEL=\" + type+ \" MESSAGE=\" + description + \"]";
-		
+		{formatDate = PropertiesFiles.displayOnePropertie("formatDate");}		
 		java.text.SimpleDateFormat formater = new java.text.SimpleDateFormat(
 				formatDate);
-
 		return formater.format(date) + "[NAME=" + nom + " LEVEL=" + type
 				+ " MESSAGE=" + description + "]";
-	//	return formater.format(date)+format;
 	}
-
 	@Override
 	public int compareTo(Message autreMesssage) {
-
 		return this.type.compareTo(autreMesssage.type);
 	}
 	

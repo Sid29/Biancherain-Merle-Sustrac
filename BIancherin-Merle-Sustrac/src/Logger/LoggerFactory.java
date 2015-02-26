@@ -2,7 +2,7 @@ package Logger;
 
 import java.util.ArrayList;
 
-class LoggerFactory {
+public class LoggerFactory {
 
 	private static ArrayList<Logger> loggers;
 	public static Logger getLogger(Class<?> class1) {
