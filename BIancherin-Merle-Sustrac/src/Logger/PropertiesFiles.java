@@ -2,10 +2,7 @@ package Logger;
 import java.util.Iterator;
 import java.util.Properties;
 import java.util.Scanner;
-import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.FileNotFoundException;
 import java.io.FileInputStream;
@@ -18,6 +15,7 @@ import java.io.OutputStream;
 class PropertiesFiles {
 	static String propertiesFileLocation="myFile.properties";
 	private static Properties properties;
+	private static Scanner sc;
 	protected static void load(String filename) throws IOException, FileNotFoundException{
 		properties = new Properties();
 		FileInputStream input = new FileInputStream(filename);
@@ -46,7 +44,6 @@ class PropertiesFiles {
 			if(propertyName.equals(propertySearch))
 			{
 				propertySearchValue = properties.getProperty(propertyName);
-				//System.out.println("Param: " + propertyName + "=" + propertySearchValue);
 			}
 		}
 		return propertySearchValue;
@@ -78,15 +75,15 @@ class PropertiesFiles {
 		
 	}
 	
+	//Interaction  avec l'user pour modifier/cree une config
 	protected static void makeNewConfig()
 	{
 		String path = PropertiesFiles.propertiesFileLocation;
-		
 		System.out.println("Welcome on the configurator of .properties\n");
 		System.out.println("Your .properties contains the following parameter :\n");
 		displayProperties();
 		
-		Scanner sc = new Scanner(System.in);
+		sc = new Scanner(System.in);
 		System.out.println("\nDo you want modify it ? (Y/N)");
 		String mod = sc.nextLine();
 		
@@ -114,7 +111,5 @@ class PropertiesFiles {
 			System.out.println("Exit of configurator");
 		}
 		else{System.out.println("Wrong answer, type Y for Yes or N for no");}
-		
-
 	}
 }
