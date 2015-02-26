@@ -3,15 +3,11 @@ package Logger;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Properties;
 
 public class Logger {
 	Folder folder = new Folder(1000, "files01");
-
 	ArrayList<Message> messages;
 	Class<?> class1;
-
-	// static PropertiesFiles propri = new PropertiesFiles();
 	public Logger(Class<?> class1) {
 		this.class1 = class1;
 		messages = new ArrayList<Message>();
@@ -24,11 +20,8 @@ public class Logger {
 	 *            du message
 	 */
 	public void debug(String description) {
-
 		Message message = new Message(class1.getName(), description, Type.DEBUG);
-
 		showLog(message);
-
 	}
 
 	/**
@@ -49,11 +42,8 @@ public class Logger {
 	 *            du message
 	 */
 	public void error(String description) {
-
 		Message message = new Message(class1.getName(), description, Type.ERROR);
-
 		showLog(message);
-
 	}
 	
 	
@@ -69,18 +59,15 @@ public class Logger {
 		typeLevel= Type.getType("Debug");
 		if(PropertiesFiles.propertiePresent("level"))
 		{typeLevel = Type.getType(PropertiesFiles.displayOnePropertie("level"));}
-
-		if (message.isShow(typeLevel)) {
-			String target="ROTATE";
+		if (message.isShow(typeLevel)) 
+		{
 			//Verifie la valeur du param "cible" et 
 			//affiche dans la console ou dans un fichier en fonction
 			if(PropertiesFiles.propertiePresent("cible")&& 
 					PropertiesFiles.displayOnePropertie("cible").equals("CONSOLE"))
 			{System.out.println(message);}
-			else{folder.UpdateFolder(message);}
-			
+			else{folder.UpdateFolder(message);}		
 		}
-
 	}
 
 	/**
@@ -96,48 +83,11 @@ public class Logger {
 	}
 
 	/**
-	 * Affichage d'une propriété
-	 *
-	 * @param Fichier
-	 *            de propriété à enregistrer
-	 */
-	public static void displayProperties() {
-		PropertiesFiles.displayProperties();
-	}
-
-	/**
-	 * Enregistrement d'une propriété
-	 * 
-	 * @param propertiesParam
-	 * @param propertiesName
-	 *
-	 * @param Fichier
-	 *            de propriété à enregistrer
-	 */
-	public static void modifyProperties(String propertiesName,
-			String propertiesParam) throws FileNotFoundException, IOException {
-		PropertiesFiles.modifyProperties(propertiesName, propertiesParam,
-				PropertiesFiles.propertiesFileLocation,null);
-	}
-
-	/**
 	 * Création d'un fichier .propertie
 	 * 
 	 */
 	public static void makeNewProperties() {
 		PropertiesFiles.makeNewConfig();
-	}
-
-	/**
-	 * Affichage d'une propriété
-	 *
-	 * @param Valeur
-	 *            de la propriété
-	 * @param Fichier
-	 *            de propriété à enregistrer
-	 */
-	public static String DisplayOnePropertie(String propertySearch) {
-		return PropertiesFiles.displayOnePropertie(propertySearch);
 	}
 
 	public boolean compare(Class<?> class2) {
@@ -149,11 +99,9 @@ public class Logger {
 
 	@Override
 	public String toString() {
-
 		String buffer = "";
 		for (Message message : messages) {
 			buffer = buffer + message.toString() + "\n";
-
 		}
 		return buffer;
 	}
