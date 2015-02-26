@@ -2,7 +2,10 @@ package Logger;
 import java.util.Iterator;
 import java.util.Properties;
 import java.util.Scanner;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.FileNotFoundException;
 import java.io.FileInputStream;
@@ -64,14 +67,15 @@ class PropertiesFiles {
 	}
 	
 	//Ecris les nouvelles valeurs dans le fichier de conf
-	protected static void modifyProperties(String propertiesName, String propertiesParam, String fileLocation) throws FileNotFoundException,
+	protected static void modifyProperties(String propertiesName, String propertiesParam, String fileLocation, String comments) throws FileNotFoundException,
 	IOException {
 		// modifie les propriétés
-		properties.setProperty(propertiesName, propertiesParam);
+		properties.setProperty(propertiesName, propertiesParam);	
 		OutputStream out = new FileOutputStream(fileLocation);
-		//properties.store(out, comments);
+		properties.store(out, comments);
 		out.flush();
 		out.close();
+		
 	}
 	
 	protected static void makeNewConfig()
@@ -93,7 +97,7 @@ class PropertiesFiles {
 			String value=sc.nextLine();
 			System.out.println(path +" "+param+" "+value);
 			try {
-				modifyProperties(param,value,path);
+				modifyProperties(param,value,path,null);
 				System.out.println("\nModification successful!");
 				System.out.println("Your new .parameter is: \n");
 				displayProperties();

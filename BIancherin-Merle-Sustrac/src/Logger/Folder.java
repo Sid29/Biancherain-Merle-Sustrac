@@ -21,22 +21,25 @@ public class Folder {
 		this.size = size;
 		Name = "log" + i +"_"+GetDate()+ ".dat";
 		this.Date = Date;
-		//recuperation du path des logs dans le fichier properties
+		//recuperation du path des logs dans le fichier properties (si present)
 		path="./";
 		if(PropertiesFiles.propertiePresent("path"))
 		{path = PropertiesFiles.displayOnePropertie("path");}
-		try {
-			
-			File = new File(path+Name);
-			writer = new BufferedWriter(new FileWriter(File, true));
 		
-			// writer.write(log);
-
-			// writer.close();
-		} catch (IOException e) {
-			e.printStackTrace();
+		//Empeche la création de fichier de log si affichage en console
+		if(PropertiesFiles.propertiePresent("cible")&&
+				PropertiesFiles.displayOnePropertie("cible").equals("CONSOLE"))
+		{}
+		else{	
+			try {				
+				File = new File(path+Name);
+				writer = new BufferedWriter(new FileWriter(File, true));			
+				// writer.write(log);	
+				// writer.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
-
 	}
 
 	public long getSize() {
@@ -66,8 +69,12 @@ public class Folder {
 
 	public void UpdateFolder(Message log) {
 				
-		if (File.length() > this.size & File.exists() ) {
-			System.out.println("trop gros");
+		//recuperation de la cible des logs dans le fichier properties
+		String target="ROTATE";
+		if(PropertiesFiles.propertiePresent("cible"))
+		{target = PropertiesFiles.displayOnePropertie("cible");}
+		if (File.length() > this.size & File.exists() & target.equals("ROTATE")) {
+			System.out.println("Size exceeded! New file created");
 			i = i + 1;
 			setName("log" + i+"_"+GetDate()+".dat");
 			
@@ -75,7 +82,7 @@ public class Folder {
 			try {
 				File = new File(path+Name);
 				writer = new BufferedWriter(new FileWriter(File));
-				// normalement si le fichier n'existe pas, il est cr�e � la
+				// normalement si le fichier n'existe pas, il est crée à la
 				// racine du projet
 
 				writer.write("" + log);
@@ -90,7 +97,7 @@ public class Folder {
 
 		try {
 			writer = new BufferedWriter(new FileWriter(new File(path+Name), true));
-			// normalement si le fichier n'existe pas, il est cr�e � la racine
+			// normalement si le fichier n'existe pas, il est crée à la racine
 			// du projet
 			writer.newLine();
 			writer.write("" + log);

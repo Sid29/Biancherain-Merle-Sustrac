@@ -47,7 +47,6 @@ public class Message implements Comparable<Message> {
 	 * @param type de la propriété
 	 */
 	public boolean isShow(Type typeLevel) {
-		System.out.println(typeLevel);
 		if (type.ordinal() < typeLevel.ordinal()) {
 			return false;
 		}

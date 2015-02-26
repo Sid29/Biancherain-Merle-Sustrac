@@ -65,11 +65,20 @@ public class Logger {
 	private void showLog(Message message) {
 		messages.add(message);
 		Type typeLevel;
-		typeLevel = Type.getType(PropertiesFiles.displayOnePropertie("level"));
+		//recuperation du level des logs dans le fichier properties (si présent)
+		typeLevel= Type.getType("Debug");
+		if(PropertiesFiles.propertiePresent("level"))
+		{typeLevel = Type.getType(PropertiesFiles.displayOnePropertie("level"));}
 
 		if (message.isShow(typeLevel)) {
-			folder.UpdateFolder(message);
-			System.out.println(message);
+			String target="ROTATE";
+			//Verifie la valeur du param "cible" et 
+			//affiche dans la console ou dans un fichier en fonction
+			if(PropertiesFiles.propertiePresent("cible")&& 
+					PropertiesFiles.displayOnePropertie("cible").equals("CONSOLE"))
+			{System.out.println(message);}
+			else{folder.UpdateFolder(message);}
+			
 		}
 
 	}
@@ -108,7 +117,7 @@ public class Logger {
 	public static void modifyProperties(String propertiesName,
 			String propertiesParam) throws FileNotFoundException, IOException {
 		PropertiesFiles.modifyProperties(propertiesName, propertiesParam,
-				PropertiesFiles.propertiesFileLocation);
+				PropertiesFiles.propertiesFileLocation,null);
 	}
 
 	/**
