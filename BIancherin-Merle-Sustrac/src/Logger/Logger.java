@@ -70,23 +70,14 @@ public class Logger {
 		}
 	}
 
-	/**
-	 * Chargement d'un fichier de propriété
-	 *
-	 * @param nom
-	 *            du fichier
-	 */
-	public static void loadProperties(String filename)
-			throws FileNotFoundException, IOException {
-		PropertiesFiles.load(filename);
-
-	}
 
 	/**
 	 * Création d'un fichier .propertie
+	 * @throws IOException 
+	 * @throws FileNotFoundException 
 	 * 
 	 */
-	public static void makeNewProperties() {
+	public static void makeNewProperties() throws FileNotFoundException, IOException {
 		PropertiesFiles.makeNewConfig();
 	}
 

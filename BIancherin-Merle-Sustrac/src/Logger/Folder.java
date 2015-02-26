@@ -2,6 +2,7 @@ package Logger;
 
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -21,6 +22,15 @@ class Folder {
 		this.Date = Date;
 		//recuperation du path des logs dans le fichier properties (si present)
 		path="./";
+		try {
+			PropertiesFiles.load("myFile.properties");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		if(PropertiesFiles.propertiePresent("path"))
 		{path = PropertiesFiles.displayOnePropertie("path");}
 		
@@ -124,7 +134,6 @@ class Folder {
 		java.text.SimpleDateFormat formater = new java.text.SimpleDateFormat(
 				format);
 		java.util.Date date = new java.util.Date();
-		System.out.println(formater.format(date));
 		return formater.format(date);
 	}
 

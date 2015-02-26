@@ -76,8 +76,9 @@ class PropertiesFiles {
 	}
 	
 	//Interaction  avec l'user pour modifier/cree une config
-	protected static void makeNewConfig()
+	protected static void makeNewConfig() throws FileNotFoundException, IOException
 	{
+		load(propertiesFileLocation);
 		String path = PropertiesFiles.propertiesFileLocation;
 		System.out.println("Welcome on the configurator of .properties\n");
 		System.out.println("Your .properties contains the following parameter :\n");
