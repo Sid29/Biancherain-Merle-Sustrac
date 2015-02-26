@@ -11,16 +11,10 @@ public class Main {
 		
 
 		/*** TEST FILE CONF ***/
-		// PropertiesFiles propri = new PropertiesFiles();
 		try {
 			// chargement des propri�t�s
 			Logger.loadProperties("myFile.properties");
 			// parcourt et affiche les propri�tes
-		//	Logger.displayProperties();
-
-			// sauvegarde les modif dans le fichier
-		//	Logger.modifyProperties("level", "Info");
-			
 			Logger.makeNewProperties();
 			} catch (Exception e) {
 			e.printStackTrace();
