@@ -13,7 +13,7 @@ public class Folder {
 	private Message log;
 	private String path;
 	private BufferedWriter writer;
-	private File File;
+	private File file;
 	private int i;
 
 	public Folder(long size, String Date) { // String path
@@ -27,13 +27,12 @@ public class Folder {
 		{path = PropertiesFiles.displayOnePropertie("path");}
 		
 		//Empeche la création de fichier de log si affichage en console
-		if(PropertiesFiles.propertiePresent("cible")&&
-				PropertiesFiles.displayOnePropertie("cible").equals("CONSOLE"))
-		{}
-		else{	
+		if(!(PropertiesFiles.propertiePresent("cible")&&
+				PropertiesFiles.displayOnePropertie("cible").equals("CONSOLE")))
+		{	
 			try {				
-				File = new File(path+Name);
-				writer = new BufferedWriter(new FileWriter(File, true));			
+				file = new File(path+Name);
+				writer = new BufferedWriter(new FileWriter(file, true));			
 				// writer.write(log);	
 				// writer.close();
 			} catch (IOException e) {
@@ -73,15 +72,29 @@ public class Folder {
 		String target="ROTATE";
 		if(PropertiesFiles.propertiePresent("cible"))
 		{target = PropertiesFiles.displayOnePropertie("cible");}
-		if (File.length() > this.size & File.exists() & target.equals("ROTATE")) {
+		if (file.length() > this.size & file.exists() & target.equals("ROTATE")) {
 			System.out.println("Size exceeded! New file created");
 			i = i + 1;
 			setName("log" + i+"_"+GetDate()+".dat");
 			
 
 			try {
-				File = new File(path+Name);
-				writer = new BufferedWriter(new FileWriter(File));
+				file = new File(path+Name);
+				//crée un sous dossier contenu dans le path si non existant
+				if(!file.exists())
+				{
+					boolean result = false;
+					try{
+						file.mkdir();
+						result=true;
+					}
+					catch(SecurityException se){
+						//do something
+					}
+					if(!result)
+					{System.out.println("Can't create the DIR");}
+				}
+				writer = new BufferedWriter(new FileWriter(file));
 				// normalement si le fichier n'existe pas, il est crée à la
 				// racine du projet
 
